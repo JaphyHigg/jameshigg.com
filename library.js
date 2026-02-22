@@ -2,6 +2,7 @@
 let allRows = [];
 let sortCol = -1;
 let sortDir = 1;
+let sortLabel = "most recently read";
 
 let fnf_state    = "both";
 let year_state   = "all_years";
@@ -44,10 +45,14 @@ fetch("books.csv")
 
 
 // ── SORTING ──
+const colLabels = ["title", "author", "published", "fiction/nf", "year read", "rating"];
+
 document.querySelectorAll("thead th[data-col]").forEach(th => {
   th.addEventListener("click", function () {
     const col = parseInt(this.dataset.col);
     if (sortCol === col) { sortDir *= -1; } else { sortCol = col; sortDir = 1; }
+
+    sortLabel = "sorted by " + colLabels[col];
 
     document.querySelectorAll("thead th[data-col]").forEach(h => h.classList.remove("sort-asc", "sort-desc"));
     this.classList.add(sortDir === 1 ? "sort-asc" : "sort-desc");
@@ -66,6 +71,7 @@ document.querySelectorAll("thead th[data-col]").forEach(th => {
     });
 
     rows.forEach(row => tbody.appendChild(row));
+    update_row_count();
   });
 });
 
@@ -221,6 +227,7 @@ function update_row_count() {
   const visible = get_visible_rows().length;
   const el      = document.getElementById("visible_count");
   if (el) {
-    el.textContent = visible === total ? total + " books" : visible + " of " + total + " books";
+    const countText = visible === total ? total + " books" : visible + " of " + total + " books";
+    el.textContent = countText + " · " + sortLabel;
   }
 }
