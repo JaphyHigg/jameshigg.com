@@ -1,4 +1,50 @@
-Book,Author,Published,Fiction/Nonfiction,Year Read,Rating
+Book,Author,Published,Fiction/Non-Fiction,Year Read,Rating
+Cheesemonger - A Life on the Wedge,Gordon Edgar,2009,Non-Fiction,2026,4.5
+One Up On Wall Street: How To Use What You Already Know To Make Money In The Market,"Peter Lynch, John Rothchild",1988,Non-Fiction,2026,3.5
+The Strange Last Voyage of Donald Crowhurst,"Ron Hall, Nicholas Tomalin",1970,Non-Fiction,2026,3
+Leviathon Wakes [The Expanse #1],James S.A. Corey,2011,Fiction,2025,4.25
+Piranesi,Susanna Clarke,2020,Fiction,2025,4.25
+Demon Copperhead,Barbara Kingsolver,2022,Fiction,2025,4.5
+"The Art Theif: A True Story of Love, Crime, and a Dangerous Obsession",Michael Finkel,2023,Non-Fiction,2025,4
+"To Be Taught, If Fortunate",Becky Chambers,2019,Fiction,2025,3.5
+Stoner,John Williams,1965,Fiction,2025,4.5
+Adventures on the Win Route: A Wine Buyer's Tour of France,Kermit Lynch with Gail Skoff,1988,Non-Fiction,2025,3.25
+The Fish That Ate the Whale: The Life and Times of America's Banana King,Rich Cohen,2012,Non-Fiction,2025,3.5
+True Grit,Charles Portis,1968,Fiction,2025,3.25
+Lonesome Dove [Lonesome Dove #3],Larry McMurtry,1985,Fiction,2025,5
+Fall of Hyperion [Hyperion Cantos #2],Dan Simmons,1990,Fiction,2025,4
+Hyperion [Hyperion Cantos #1],Dan Simmons,1989,Fiction,2025,4.75
+Kings of the Wyld [The Band #1],Nicholas Eames,2017,Fiction,2025,4.25
+The Art of Learning: A Journey in the Pursuit of Excellence,Josh Waitzkin,2007,Non-Fiction,2025,2.75
+American Kingpin: The Epic Hunt for the Criminal Mastermind Behind the Silk Road,Nick Bilton,2017,Non-Fiction,2025,4.25
+The Winter of Our Discontent,John Steinbeck,1961,Fiction,2025,4.25
+Travels with Charley in Search of America,John Steinbeck,1962,Non-Fiction,2025,3.75
+Flowers for Algernon,Daniel Keyes,1966,Fiction,2025,4.25
+The Red Pony,John Steinbeck,1933,Fiction,2025,2.75
+Tortilla Flat,John Steinbeck,1935,Fiction,2025,4
+Of Mice and Men,John Steinbeck,1937,Fiction,2025,4.25
+The Grapes of Wrath,John Steinbeck,1939,Fiction,2025,4.75
+James,Percival Everett,2024,Fiction,2025,4
+Sweet Thursday [Cannery Road #2],John Steinbeck,1954,Fiction,2025,4
+The Adventures of Huckleberry Finn [Adventures of Tom and Huck #2],Mark Twain,1884,Fiction,2025,2.75
+Crime and Punishment,Fyodor Dostoevsky,1866,Fiction,2025,4.25
+Cannery Road [Cannery Road #1],John Steinbeck,1945,Fiction,2024,4.5
+Changing Planes,Ursula K. Le Guin,2003,Fiction,2024,4
+Dreaming in Chinese,Deborah Fallows,2010,Non-Fiction,2024,3
+East of Eden,John Steinbeck,1952,Fiction,2024,5
+"The Formula: How Rogues, Geniuses, and Speed Freaks Reengineered F1 Into the World's Fastest-Growing Sport","Jonathan Clegg, Joshua Robinson",2024,Non-Fiction,2024,4.25
+Small Things Like These,Claire Keegan,2021,Fiction,2024,4
+Dracula,Bram Stoker,1897,Fiction,2024,3.25
+Heart of Darkness,Joseph Conrad,1899,Fiction,2024,2.5
+Tokyo Vice: An American Reporter on the Police Beat in Japan,Jake Adelstein,2009,Non-Fiction,2024,4
+Daily Rituals: How Artists Work,Mason Currey,2013,Non-Fiction,2024,3.5
+The Chrysalids,John Wyndham,1955,Fiction,2024,3.75
+"The Easy Way to Quit Caffeine: Live a Healthier, Happier Life",Allen Carr,2016,Non-Fiction,2024,2.25
+Same as Ever: A Guide to What Never Changes,Morgan Housel,2023,Non-Fiction,2024,3.5
+All Systems Red [The Murderbot Diaries #1],Martha Wells,2017,Fiction,2024,3.25
+Dune Messiah [Dune #2],Frank Herbert,1969,Fiction,2024,3.5
+Salt Sugar Fat: How the Food Giants Hooked Us,Michael Moss,2013,Non-Fiction,2024,4
+The Happy Sleeper,"Heather Turgeon, Julie Wright",2014,Non-Fiction,2024,2.5
 Mindless Eating: Why We Eat More Than We Think,Brian Wansink,2006,Non-Fiction,2024,4.25
 Longitude: The True Story of a Lone Genius Who Solved the Greatest Scientific Problem of his Time,Dava Sobel,1995,Non-Fiction,2024,3.75
 Working in Public: The Making and Maintenance of Open Source Software,Nadia Eghbal,2020,Non-Fiction,2024,3.25
@@ -14,7 +60,7 @@ We're Parents! The New Dad Book for Baby's First Year: Everything You Need to Kn
 The Greatest Salesman in the World,Og Mandino,1968,Fiction,2023,2.5
 On Writing: A Memoir of the Craft,Stephen King,2000,Non-Fiction,2023,4.5
 The Expectant Father: The Ultimate Guide for Dads-to-Be,"Armin A. Brott, Jennifer Ash",1995,Non-Fiction,2023,3.75
-Mr. China: A Memoir,Tim Clissold,2006,Fiction,2023,3.75
+Mr. China: A Memoir,Tim Clissold,2006,Non-Fiction,2023,3.75
 Children of Rune [Children of Time #2],Adrian Tchaikovsky,2019,Fiction,2023,4.25
 Exhalation,Ted Chiang,2019,Fiction,2023,5
 Monkey King: Journey to the West [Translated by Julia Lovell],Wu Ch'eng-En,1592,Fiction,2023,4.25
@@ -75,7 +121,7 @@ The River of Doubt: Theodore Roosevelt's Darkest Journey,Candice Millard,2005,No
 The Outsider [aka The Stranger],Albert Camus,1942,Fiction,2022,3.75
 Casino Royale [James Bond #1],Ian Fleming,1966,Fiction,2022,2.75
 "A Man for All Markets: From Las Vegas to Wall Street, How I Beat the Dealer and the Market",Edward O. Thorp,2016,Non-Fiction,2022,4.25
-Who Moved My Cheese?: An A-Mazing Way to Deal with Change in Your Work and in Your Life,Spencer Johnson,1938,Fiction,2022,3.75
+Who Moved My Cheese?: An A-Mazing Way to Deal with Change in Your Work and in Your Life,Spencer Johnson,1998,Fiction,2022,3.75
 The Picture of Dorian Gray,Oscar Wilde,1890,Fiction,2022,3.5
 Logical Chess Move by Move - Every Move Explained,Irving Chernev,1957,Non-Fiction,2022,4
 Ikigai: The Japanese Secret to a Long and Happy Life,"Francesc Miralles, Hector Garcia Puigcerver",2016,Non-Fiction,2022,2.75
@@ -115,8 +161,7 @@ A Scanner Darkly,Philip K Dick,1977,Fiction,2022,4
 Neuromancer [Sprawl #1],William Gibson,1984,Fiction,2022,3
 "This Machine Kills Secrets: Julian Assange, the Cypherpunks, and Their Fight to Empower Whistleblowers",Andy Greenberg,2012,Non-Fiction,2022,4
 "Guards! Guards! [Discworld #8, City Watch #1]",Terry Prachett,1989,Fiction,2022,4
-"The Oxygen Advantage: Simple, Scientifically Proven Breathing Techniques to Help You Become Healthier, Slimmer, Faster, and Fitter
-",Patrick McKeon,2016,Non-Fiction,2022,2
+"The Oxygen Advantage: Simple, Scientifically Proven Breathing Techniques to Help You Become Healthier, Slimmer, Faster, and Fitter",Patrick McKeon,2016,Non-Fiction,2022,2
 The Machine Stops,E. M. Foster,1909,Fiction,2022,3
 The Tiger: A True Story of Vengence and Survival,John Vaillant,2010,Non-Fiction,2022,3
 Why We Sleep: Unlocking the Power of Sleep and Dreams,Matthew Walker,2017,Non-Fiction,2022,5
@@ -172,7 +217,7 @@ Death of a Salesman,Arthur Miller,1949,Fiction,2021,1
 How I Built This - The Unexpected Paths to Success From The World's Most Inspiring Entrepreneurs,Guy Raz,2020,Non-Fiction,2021,4
 The Importance of Being Earnest,Oscar Wilde,1895,Fiction,2021,2
 Animal Farm,George Orwell,1945,Fiction,2021,4
-Meditations,Marcus Aurelius,160 - 180,Non-Fiction,2021,5
+Meditations,Marcus Aurelius,170,Non-Fiction,2021,5
 Moonwalking With Einstein - The Art and Science of Remembering Everything,Joshua Foer,2011,Non-Fiction,2021,4
 Atomic Habits - An Easy & Proven Way to Build Good Habits and Break Bad Ones,James Clear,2018,Non-Fiction,2021,5
 MONEY The True Story of a Made-Up Thing,Jacob Goldstein,2020,Non-Fiction,2021,3
@@ -180,7 +225,7 @@ MONEY The True Story of a Made-Up Thing,Jacob Goldstein,2020,Non-Fiction,2021,3
 the WAR of ART: Breal Thorugh the Blocks and Win Your Inner Creative Battles,Steven Pressfield,2002,Non-Fiction,2020,2
 DAMN GOOD ADVICE (for people with talen!) How to Unleash Your Creative Potential by America's Master Communicator,George Lois,2012,Non-Fiction,2020,2
 Eat That Frog! 21 Great Ways to Stop Procrastinating and Get More Done in Less Time,Brian Tracy,2001,Non-Fiction,2020,2
-Frankenstien,Mary Shelley,1818,Fiction,2020,3
+Frankenstein,Mary Shelley,1818,Fiction,2020,3
 Blockchain Chicken Farm - And Other Stories of Tech in China's Countryside,Xiaowei Wang,2020,Non-Fiction,2020,2
 "Loonshots: Nurture The Crazy Ideas That Win Wars, Cure Diseases, and Transform Industries",Safi Bahcall,2019,Non-Fiction,2020,3
 "Hatching Twitter: A True Story of Money, Power, Friendship, and Betrayal",Nick Bilton,2014,Non-Fiction,2020,4
@@ -190,7 +235,7 @@ The Infinite Machine: How an Army of Crypto Hackers Is Building the Next Interne
 The Autobiography of Benjamin Franklin,Benjamin Franklin,1791,Non-Fiction,2020,4
 Digital Gold: Bitcoin and the Inside Story of the Misfits and Millionaires Trying to Reinvent Money,Nathaniel Popper,2016,Non-Fiction,2020,4
 "Bitcoin Billionaires: A True Story of Genius, Betrayal, and Redemption",Ben Mezrich,2019,Non-Fiction,2020,4
-The Tao of Pooh,Benjamin Hoff,1982,Mixed,2020,3
+The Tao of Pooh,Benjamin Hoff,1982,Non-Fiction,2020,3
 Station Eleven,Emily St. John Mandel,2015,Fiction,2020,2
 Fahrenheit 451,Ray Bradbury,1953,Fiction,2020,3
 The Gurkha and the Lord of Tuesday,Saad Z. Hossain,2019,Fiction,2020,3

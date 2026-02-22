@@ -1,91 +1,264 @@
 <!DOCTYPE html>
-
 <html lang="en">
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
-        <link href="styles.css" rel="stylesheet">
-        <link rel="preload" href="images/headshot.webp" as="image">
-        <title>library - japhy higg</title>
-    </head>
-    <body>
-        <div class="container-fluid">
-            <div class="row title-row">
-                <div class="col-12">
-                  <img src="images/headshot.webp" width="100px">
-                  <span id="myname">japhy higg</span>
-                </div>
-              </div>
-            <div class="row nav-row">
-                <div class="nav-bar col-12">
-                    <span id="links">
-                      <a href="code.html">code</a> |
-                      <a href="art.html"> art</a> |
-                      <a href="library.html"> library</a> |
-                      <a href="chess.html"> chess</a> |
-                      <a href="contact.html"> contact</a>
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <span id="lib_description">
-                        Every book I've read since 2020, audiobooks not included.
-                        <br>Ratings decided on day of completion. Switched from whole number ratings in 2022.
-                        <br>
-                    </span>
-                    <div class="filters">
-                        Search: <input id="search_box">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>library — james higgins</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Epilogue:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        .library-content {
+            opacity: 0;
+            animation: rise 0.7s ease 0.35s forwards;
+            padding-bottom: 60px;
+        }
 
-                    <label> Filters: </label>
+        .lib-description {
+            font-size: 13px;
+            color: var(--light);
+            font-weight: 300;
+            line-height: 1.7;
+            margin-bottom: 28px;
+            max-width: 600px;
+        }
 
-                    <select name="fnf" id="fnf">
-                    <option value="both">F & NF</option>
+        .lib-description span {
+            color: var(--mid);
+            font-weight: 400;
+        }
+
+        /* ── FILTERS ── */
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding: 16px 20px;
+            background: rgba(28,24,16,0.03);
+            border: 1px solid rgba(28,24,16,0.08);
+        }
+
+        .filter-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--light);
+            font-weight: 700;
+        }
+
+        .filters input,
+        .filters select {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 12px;
+            color: var(--ink);
+            background: var(--bg);
+            border: 1px solid rgba(28,24,16,0.15);
+            padding: 7px 12px;
+            outline: none;
+            transition: border-color 0.2s ease;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .filters input { width: 180px; }
+
+        .filters input:focus,
+        .filters select:focus { border-color: var(--rust); }
+
+        .filters select {
+            padding-right: 28px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b8a898' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            cursor: pointer;
+        }
+
+        .filter-divider {
+            width: 1px;
+            height: 20px;
+            background: rgba(28,24,16,0.1);
+        }
+
+        /* ── ROW COUNT ── */
+        .row-count {
+            font-size: 11px;
+            color: var(--light);
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            min-height: 16px;
+        }
+
+        /* ── TABLE ── */
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid rgba(28,24,16,0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        thead tr { background: var(--ink); color: #f0ebe2; }
+
+        thead th {
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        thead th[data-col] {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        thead th[data-col]:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        thead th[data-col]::after {
+            content: ' ↕';
+            opacity: 0.3;
+            font-size: 10px;
+        }
+
+        thead th.sort-asc::after  { content: ' ↑'; opacity: 1; }
+        thead th.sort-desc::after { content: ' ↓'; opacity: 1; }
+
+        tbody tr {
+            border-bottom: 1px solid rgba(28,24,16,0.06);
+            transition: background 0.15s ease;
+        }
+
+        tbody tr:hover { background: rgba(28,24,16,0.03); }
+
+        tbody td {
+            padding: 11px 16px;
+            color: var(--ink);
+            vertical-align: middle;
+        }
+
+        .f_td  { color: var(--rust); font-size: 11px; }
+        .nf_td { color: #4a6741; font-size: 11px; }
+
+        .rating_td {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .filter_hidden,
+        .search_hidden { display: none; }
+
+        .updated-note {
+            font-size: 11px;
+            color: var(--light);
+            margin-top: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── MOBILE: hide Published and Fiction/NF columns ── */
+        @media (max-width: 640px) {
+            .filters input { width: 120px; }
+            .filter-divider { display: none; }
+
+            /* hide Published (col 3) and Fiction/NF (col 4) */
+            thead th:nth-child(3),
+            thead th:nth-child(4),
+            tbody td:nth-child(3),
+            tbody td:nth-child(4) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <nav>
+            <a href="index.html" class="nav-home">james higgins</a>
+            <ul class="nav-links">
+                <li><a href="projects.html">projects</a></li>
+                <li><a href="library.html" class="active">library</a></li>
+                <li><a href="https://www.discogs.com/user/JaphyHigg/collection?header=1">records</a></li>
+                <li><a href="contact.html">contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="page-header">
+            <h1>the <em>library.</em></h1>
+        </div>
+
+        <div class="library-content">
+
+            <p class="lib-description">
+                Every book I've read since 2020, audiobooks not included. <span><span id="book_count"></span> books and counting.</span><br>
+                Ratings decided on day of completion. Switched from whole number ratings in 2022.
+            </p>
+
+            <div class="filters">
+                <span class="filter-label">search</span>
+                <input id="search_box" placeholder="title, author...">
+                <div class="filter-divider"></div>
+                <span class="filter-label">filter</span>
+
+                <select name="fnf" id="fnf">
+                    <option value="both">Fiction & Non-fiction</option>
                     <option value="f">Fiction</option>
                     <option value="nf">Non-fiction</option>
-                    </select>
+                </select>
 
-                    <select name="read_filter" id="read_filter">
+                <select name="read_filter" id="read_filter">
                     <option value="all_years">All years</option>
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
                     <option value="2024">2024</option>
                     <option value="2023">2023</option>
                     <option value="2022">2022</option>
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
-                    </select>
+                </select>
 
-                    <select name="rating_filter" id="rating_filter">
+                <select name="rating_filter" id="rating_filter">
                     <option value="all_ratings">All ratings</option>
                     <option value="5">5</option>
-                    <option value="4s">4 - 4.75</option>
-                    <option value="3s">3 - 3.75</option>
-                    <option value="2s">2 - 2.75</option>
-                    <option value="1s">1 - 1.75</option>
-                    </select>
-
-                    </div>
-                    <div class="table-responsive" id="table_div">
-                        <table class="table table-bordered" id="b_table">
-                            <thead class="thead-dark">
-                                <th>Title</th>
-                                <th>Author</th>
-                                <th>Published</th>
-                                <th>Fiction/NF</th>
-                                <th>YrRead</th>
-                                <th>Rating</th>
-                            </thead>
-                            <tbody id="b_data">
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <div style="font-size: 10px; margin-top: 10px">
-                        Updated 2024/06/02
-                    </div>
-                </div>
+                    <option value="4s">4 – 4.75</option>
+                    <option value="3s">3 – 3.75</option>
+                    <option value="2s">2 – 2.75</option>
+                    <option value="1s">1 – 1.75</option>
+                </select>
             </div>
+
+            <div class="row-count" id="visible_count"></div>
+
+            <div class="table-wrap">
+                <table id="b_table">
+                    <thead>
+                        <tr>
+                            <th data-col="0">Title</th>
+                            <th data-col="1">Author</th>
+                            <th data-col="2">Published</th>
+                            <th data-col="3">Fiction/NF</th>
+                            <th data-col="4">Yr Read</th>
+                            <th data-col="5">Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody id="b_data"></tbody>
+                </table>
+            </div>
+
+            <p class="updated-note">Updated February 2026</p>
+
         </div>
-        <script src="library.js"></script>
-    </body>
+
+    </div>
+    <script src="library.js"></script>
+</body>
 </html>
