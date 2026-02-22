@@ -196,11 +196,10 @@
 
         /* ── MOBILE ── */
         @media (max-width: 640px) {
-            .filters input { width: 100px; }
             .filter-divider { display: none; }
             .stat-card { min-width: calc(50% - 8px); }
 
-            /* prevent the sticky filter bar from expanding page width */
+            /* filter bar: stack items, stay sticky below nav */
             .filters {
                 position: sticky;
                 top: 0;
@@ -208,7 +207,13 @@
                 right: 0;
                 box-sizing: border-box;
                 width: 100%;
+                flex-wrap: wrap;
+                gap: 8px;
+                padding: 12px 16px;
             }
+
+            .filters input { width: 100%; flex: 1 1 auto; }
+            .filters select { flex: 1 1 auto; min-width: 0; font-size: 11px; }
 
             /* hide Published, Fiction/NF, and Yr Read */
             thead th:nth-child(3),
@@ -222,9 +227,9 @@
             .table-wrap { overflow-x: hidden; }
             table { table-layout: fixed; width: 100%; font-size: 12px; }
 
-            thead th:nth-child(1), tbody td:nth-child(1) { width: 55%; }
+            thead th:nth-child(1), tbody td:nth-child(1) { width: 50%; }
             thead th:nth-child(2), tbody td:nth-child(2) { width: 30%; }
-            thead th:nth-child(6), tbody td:nth-child(6) { width: 15%; }
+            thead th:nth-child(6), tbody td:nth-child(6) { width: 20%; }
 
             /* truncate with ellipsis */
             tbody td:nth-child(1),
@@ -235,8 +240,8 @@
                 max-width: 0;
             }
 
-            tbody td { padding: 10px 10px; }
-            thead th { padding: 12px 10px; }
+            tbody td { padding: 10px 8px; }
+            thead th { padding: 12px 8px; font-size: 9px; letter-spacing: 1.5px; }
         }
     </style>
 </head>
@@ -340,5 +345,14 @@
 
     </div>
     <script src="library.js"></script>
+    <script>
+        // Show nav shadow only when scrolled
+        const nav = document.querySelector('nav');
+        if (nav) {
+            window.addEventListener('scroll', () => {
+                nav.classList.toggle('scrolled', window.scrollY > 10);
+            }, { passive: true });
+        }
+    </script>
 </body>
 </html>

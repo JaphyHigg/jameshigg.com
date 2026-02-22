@@ -55,7 +55,12 @@ nav {
     top: 0;
     background: var(--bg);
     z-index: 200;
-    box-shadow: 0 2px 8px rgba(28,24,16,0.04);
+    box-shadow: none;
+    transition: box-shadow 0.25s ease;
+}
+
+nav.scrolled {
+    box-shadow: 0 2px 8px rgba(28,24,16,0.06);
 }
 
 /* landing page nav override — links only, no home name */
