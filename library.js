@@ -191,7 +191,7 @@ function update_stats() {
     const total   = fiction + nf;
     const fPct    = total ? Math.round((fiction / total) * 100) : 0;
     const nfPct   = 100 - fPct;
-    document.getElementById("stat-split").textContent = fPct + "% fiction, " + nfPct + "% non-fiction";
+    document.getElementById("stat-split").textContent = fPct + "% / " + nfPct + "%";
   } else {
     splitStat.style.display = "none";
   }
