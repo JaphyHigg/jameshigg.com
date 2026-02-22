@@ -51,6 +51,11 @@ nav {
     border-bottom: 1px solid rgba(28,24,16,0.1);
     opacity: 0;
     animation: rise 0.7s ease 0.1s forwards;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 200;
+    box-shadow: 0 2px 8px rgba(28,24,16,0.04);
 }
 
 /* landing page nav override — links only, no home name */
