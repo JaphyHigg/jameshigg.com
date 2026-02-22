@@ -132,14 +132,7 @@ function apply_filters() {
 
     let rating_hide = false;
     if (rating_state !== "all_ratings" && rating_val !== null) {
-      const ranges = {
-        "5":  r => r === 5,
-        "4s": r => r >= 4 && r < 5,
-        "3s": r => r >= 3 && r < 4,
-        "2s": r => r >= 2 && r < 3,
-        "1s": r => r >= 1 && r < 2,
-      };
-      if (ranges[rating_state] && !ranges[rating_state](rating_val)) rating_hide = true;
+      if (rating_val < parseFloat(rating_state)) rating_hide = true;
     }
 
     if (fnf_hide || year_hide || rating_hide) {

@@ -200,10 +200,13 @@
             .filter-divider { display: none; }
             .stat-card { min-width: calc(50% - 8px); }
 
+            /* hide Published, Fiction/NF, and Yr Read — show Title, Author, Rating */
             thead th:nth-child(3),
             thead th:nth-child(4),
+            thead th:nth-child(5),
             tbody td:nth-child(3),
-            tbody td:nth-child(4) { display: none; }
+            tbody td:nth-child(4),
+            tbody td:nth-child(5) { display: none; }
         }
     </style>
 </head>
@@ -276,11 +279,10 @@
 
                 <select name="rating_filter" id="rating_filter">
                     <option value="all_ratings">All ratings</option>
-                    <option value="5">5</option>
-                    <option value="4s">4 – 4.75</option>
-                    <option value="3s">3 – 3.75</option>
-                    <option value="2s">2 – 2.75</option>
-                    <option value="1s">1 – 1.75</option>
+                    <option value="4.5">4.5+</option>
+                    <option value="4">4+</option>
+                    <option value="3.5">3.5+</option>
+                    <option value="3">3+</option>
                 </select>
             </div>
 
