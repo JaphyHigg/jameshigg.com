@@ -52,7 +52,7 @@ document.querySelectorAll("thead th[data-col]").forEach(th => {
     const col = parseInt(this.dataset.col);
     if (sortCol === col) { sortDir *= -1; } else { sortCol = col; sortDir = 1; }
 
-    sortLabel = "sorted by " + colLabels[col];
+    sortLabel = "by " + colLabels[col];
 
     document.querySelectorAll("thead th[data-col]").forEach(h => h.classList.remove("sort-asc", "sort-desc"));
     this.classList.add(sortDir === 1 ? "sort-asc" : "sort-desc");
