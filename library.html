@@ -200,7 +200,7 @@
             .filter-divider { display: none; }
             .stat-card { min-width: calc(50% - 8px); }
 
-            /* hide Published, Fiction/NF, and Yr Read — show Title, Author, Rating */
+            /* hide Published, Fiction/NF, and Yr Read */
             thead th:nth-child(3),
             thead th:nth-child(4),
             thead th:nth-child(5),
@@ -208,16 +208,15 @@
             tbody td:nth-child(4),
             tbody td:nth-child(5) { display: none; }
 
-            /* prevent table from overflowing */
-            table { table-layout: fixed; width: 100%; }
-            thead th:nth-child(1),
-            tbody td:nth-child(1) { width: 60%; }
-            thead th:nth-child(2),
-            tbody td:nth-child(2) { width: 25%; }
-            thead th:nth-child(6),
-            tbody td:nth-child(6) { width: 15%; }
+            /* force table to fit screen exactly */
+            .table-wrap { overflow-x: hidden; }
+            table { table-layout: fixed; width: 100%; font-size: 12px; }
 
-            /* truncate long titles and authors */
+            thead th:nth-child(1), tbody td:nth-child(1) { width: 55%; }
+            thead th:nth-child(2), tbody td:nth-child(2) { width: 30%; }
+            thead th:nth-child(6), tbody td:nth-child(6) { width: 15%; }
+
+            /* truncate with ellipsis */
             tbody td:nth-child(1),
             tbody td:nth-child(2) {
                 white-space: nowrap;
@@ -225,6 +224,9 @@
                 text-overflow: ellipsis;
                 max-width: 0;
             }
+
+            tbody td { padding: 10px 10px; }
+            thead th { padding: 12px 10px; }
         }
     </style>
 </head>
