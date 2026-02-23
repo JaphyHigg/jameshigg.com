@@ -267,7 +267,7 @@
 
             /* table: full-width with even side padding */
             .table-wrap {
-                overflow-x: hidden;
+                overflow: visible;
                 margin-left: -24px;
                 margin-right: -24px;
                 border-left: none;
@@ -419,8 +419,11 @@
                 }
             }
         }
-        // Run after a short delay to ensure fonts/content are rendered
+
+        // Run multiple times to catch font loading and layout shifts
+        setStickyOffsets();
         setTimeout(setStickyOffsets, 100);
+        setTimeout(setStickyOffsets, 500);
         window.addEventListener('resize', setStickyOffsets);
 
         // Clear filters button
@@ -436,8 +439,10 @@
                                yearSelect.value !== 'all_years' ||
                                ratingSelect.value !== 'all_ratings';
             clearBtn.classList.toggle('visible', hasFilters);
-            // Recalculate offsets when filter bar changes size
-            setTimeout(setStickyOffsets, 50);
+            // Recalculate offsets since filter bar height may change
+            requestAnimationFrame(() => {
+                setStickyOffsets();
+            });
         }
 
         clearBtn.addEventListener('click', function () {

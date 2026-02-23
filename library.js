@@ -2,7 +2,7 @@
 let allRows = [];
 let sortCol = -1;
 let sortDir = 1;
-let sortLabel = "most recently read";
+let sortLabel = "by most recently read";
 
 let fnf_state    = "both";
 let year_state   = "all_years";
@@ -47,30 +47,51 @@ fetch("books.csv")
 // ── SORTING ──
 const colLabels = ["title", "author", "published", "fiction/nf", "year read", "rating"];
 
+// Track sort cycle: 0 = no sort, 1 = asc, 2 = desc
+let sortCycle = 0;
+
 document.querySelectorAll("thead th[data-col]").forEach(th => {
   th.addEventListener("click", function () {
     const col = parseInt(this.dataset.col);
-    if (sortCol === col) { sortDir *= -1; } else { sortCol = col; sortDir = 1; }
 
-    sortLabel = "by " + colLabels[col];
+    if (sortCol === col) {
+      // Same column: advance cycle
+      sortCycle++;
+      if (sortCycle > 2) sortCycle = 0;
+    } else {
+      // New column: start at asc
+      sortCol = col;
+      sortCycle = 1;
+    }
 
     document.querySelectorAll("thead th[data-col]").forEach(h => h.classList.remove("sort-asc", "sort-desc"));
-    this.classList.add(sortDir === 1 ? "sort-asc" : "sort-desc");
 
     const tbody = document.getElementById("b_data");
-    const rows = Array.from(tbody.querySelectorAll("tr"));
 
-    rows.sort((a, b) => {
-      const aCells = a.querySelectorAll("td");
-      const bCells = b.querySelectorAll("td");
-      if (!aCells[col] || !bCells[col]) return 0;
-      let aVal = aCells[col].textContent.trim();
-      let bVal = bCells[col].textContent.trim();
-      if (col === 2 || col === 4 || col === 5) return (parseFloat(aVal) - parseFloat(bVal)) * sortDir;
-      return aVal.localeCompare(bVal) * sortDir;
-    });
+    if (sortCycle === 0) {
+      // Reset to original CSV order
+      sortCol = -1;
+      sortDir = 1;
+      sortLabel = "by most recently read";
+      allRows.forEach(row => tbody.appendChild(row));
+    } else {
+      sortDir = sortCycle === 1 ? 1 : -1;
+      sortLabel = "by " + colLabels[col];
+      this.classList.add(sortCycle === 1 ? "sort-asc" : "sort-desc");
 
-    rows.forEach(row => tbody.appendChild(row));
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+      rows.sort((a, b) => {
+        const aCells = a.querySelectorAll("td");
+        const bCells = b.querySelectorAll("td");
+        if (!aCells[col] || !bCells[col]) return 0;
+        let aVal = aCells[col].textContent.trim();
+        let bVal = bCells[col].textContent.trim();
+        if (col === 2 || col === 4 || col === 5) return (parseFloat(aVal) - parseFloat(bVal)) * sortDir;
+        return aVal.localeCompare(bVal) * sortDir;
+      });
+      rows.forEach(row => tbody.appendChild(row));
+    }
+
     update_row_count();
   });
 });
