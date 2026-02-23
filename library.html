@@ -425,6 +425,14 @@
         setTimeout(setStickyOffsets, 500);
         window.addEventListener('resize', setStickyOffsets);
 
+        // Watch filter bar for height changes (e.g. clear button appearing)
+        const filtersEl = document.querySelector('.filters');
+        if (filtersEl && typeof ResizeObserver !== 'undefined') {
+            new ResizeObserver(() => {
+                setStickyOffsets();
+            }).observe(filtersEl);
+        }
+
         // Clear filters button
         const clearBtn = document.getElementById('clear_filters');
         const searchBox = document.getElementById('search_box');
