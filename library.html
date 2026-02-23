@@ -146,14 +146,8 @@
             color: var(--light);
             letter-spacing: 0.5px;
             min-height: 16px;
-            padding: 10px 48px;
-            margin-left: -48px;
-            margin-right: -48px;
-            background: var(--bg);
-            border-bottom: 1px solid rgba(28,24,16,0.06);
-            position: sticky;
-            top: var(--filters-bottom, 130px);
-            z-index: 99;
+            width: 100%;
+            padding-top: 8px;
         }
 
         /* ── TABLE ── */
@@ -249,9 +243,6 @@
             .filters select { flex: 1 1 auto; min-width: 0; font-size: 11px; }
 
             .row-count {
-                margin-left: -24px;
-                margin-right: -24px;
-                padding: 8px 24px;
                 font-size: 10px;
                 letter-spacing: 0;
             }
@@ -369,9 +360,8 @@
                 </select>
 
                 <button class="clear-filters" id="clear_filters">✕ clear</button>
+                <div class="row-count" id="visible_count"></div>
             </div>
-
-            <div class="row-count" id="visible_count"></div>
 
             <div class="table-wrap">
                 <table id="b_table">
@@ -400,7 +390,6 @@
         function setStickyOffsets() {
             const nav = document.querySelector('nav');
             const filters = document.querySelector('.filters');
-            const rowCount = document.querySelector('.row-count');
             const root = document.documentElement;
 
             if (nav) {
@@ -409,12 +398,7 @@
 
                 if (filters) {
                     const filtersH = filters.offsetHeight;
-                    root.style.setProperty('--filters-bottom', (navH + filtersH) + 'px');
-
-                    if (rowCount) {
-                        const rowCountH = rowCount.offsetHeight;
-                        root.style.setProperty('--thead-top', (navH + filtersH + rowCountH) + 'px');
-                    }
+                    root.style.setProperty('--thead-top', (navH + filtersH) + 'px');
                 }
             }
         }
@@ -425,18 +409,10 @@
         setTimeout(setStickyOffsets, 500);
         window.addEventListener('resize', setStickyOffsets);
 
-        // Watch filter bar for height changes (e.g. clear button appearing)
+        // Watch filter bar for height changes (e.g. clear button appearing/disappearing)
         const filtersEl = document.querySelector('.filters');
         if (filtersEl && typeof ResizeObserver !== 'undefined') {
-            new ResizeObserver(() => {
-                setStickyOffsets();
-                // Force browser to recalculate sticky positions by nudging scroll
-                const y = window.scrollY;
-                if (y > 0) {
-                    window.scrollTo(0, y + 1);
-                    window.scrollTo(0, y);
-                }
-            }).observe(filtersEl);
+            new ResizeObserver(setStickyOffsets).observe(filtersEl);
         }
 
         // Clear filters button
