@@ -48,7 +48,6 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    border-bottom: none;
     opacity: 0;
     animation: rise 0.7s ease 0.1s forwards;
     position: sticky;
