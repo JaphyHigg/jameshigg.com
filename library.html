@@ -255,6 +255,8 @@
                 margin-left: -24px;
                 margin-right: -24px;
                 padding: 8px 24px;
+                font-size: 10px;
+                letter-spacing: 0;
             }
 
             /* hide Published, Fiction/NF, and Yr Read */
@@ -439,6 +441,8 @@
                                yearSelect.value !== 'all_years' ||
                                ratingSelect.value !== 'all_ratings';
             clearBtn.classList.toggle('visible', hasFilters);
+            // Force reflow to ensure mobile Safari renders the change
+            clearBtn.offsetHeight;
             // Recalculate offsets since filter bar height may change
             requestAnimationFrame(() => {
                 setStickyOffsets();
