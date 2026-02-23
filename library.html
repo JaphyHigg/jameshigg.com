@@ -72,11 +72,13 @@
             margin-left: -48px;
             margin-right: -48px;
             padding: 16px 48px;
+            padding-bottom: 12px;
             background: var(--bg);
             border-bottom: 1px solid rgba(28,24,16,0.08);
             position: sticky;
             top: var(--nav-height, 77px);
             z-index: 100;
+            overflow: visible;
         }
 
         /* ── CLEAR FILTERS BUTTON ── */
@@ -146,8 +148,10 @@
             color: var(--light);
             letter-spacing: 0.5px;
             min-height: 16px;
-            width: 100%;
-            padding-top: 8px;
+            flex-basis: 100%;
+            padding-top: 4px;
+            white-space: nowrap;
+            overflow: visible;
         }
 
         /* ── TABLE ── */
