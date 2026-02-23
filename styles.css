@@ -55,12 +55,11 @@ nav {
     top: 0;
     background: var(--bg);
     z-index: 200;
-    box-shadow: none;
-    transition: box-shadow 0.25s ease;
-}
-
-nav.scrolled {
-    box-shadow: 0 2px 8px rgba(28,24,16,0.06);
+    /* full-bleed so no visible edges */
+    margin-left: -48px;
+    margin-right: -48px;
+    padding-left: 48px;
+    padding-right: 48px;
 }
 
 /* landing page nav override — links only, no home name */
@@ -140,6 +139,12 @@ nav.nav-landing {
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
     .page { padding: 0 24px; }
+    nav {
+        margin-left: -24px;
+        margin-right: -24px;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
     .nav-links { gap: 20px; }
 }
 

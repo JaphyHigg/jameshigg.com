@@ -69,14 +69,14 @@
             align-items: center;
             gap: 12px;
             margin-bottom: 12px;
-            padding: 16px 0;
+            margin-left: -48px;
+            margin-right: -48px;
+            padding: 16px 48px;
             background: var(--bg);
-            border-top: 1px solid rgba(28,24,16,0.08);
             border-bottom: 1px solid rgba(28,24,16,0.08);
             position: sticky;
             top: var(--nav-height, 77px);
             z-index: 100;
-            box-shadow: 0 4px 12px rgba(28,24,16,0.04);
         }
 
         .filter-label {
@@ -355,20 +355,11 @@
         function setNavHeight() {
             const nav = document.querySelector('nav');
             if (nav) {
-                const h = nav.offsetHeight;
-                document.documentElement.style.setProperty('--nav-height', h + 'px');
+                document.documentElement.style.setProperty('--nav-height', nav.offsetHeight + 'px');
             }
         }
         setNavHeight();
         window.addEventListener('resize', setNavHeight);
-
-        // Show nav shadow only when scrolled
-        const nav = document.querySelector('nav');
-        if (nav) {
-            window.addEventListener('scroll', () => {
-                nav.classList.toggle('scrolled', window.scrollY > 10);
-            }, { passive: true });
-        }
     </script>
 </body>
 </html>
