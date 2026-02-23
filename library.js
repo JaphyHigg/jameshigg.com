@@ -251,7 +251,10 @@ function update_row_count() {
   const visible = get_visible_rows().length;
   const el      = document.getElementById("visible_count");
   if (el) {
-    const countText = visible === total ? total + " books" : visible + " of " + total + " books";
+    const isMobile = window.innerWidth <= 640;
+    const countText = visible === total
+      ? total + " books"
+      : visible + " of " + total + (isMobile ? "" : " books");
     el.textContent = countText + " · " + sortLabel;
   }
 }
