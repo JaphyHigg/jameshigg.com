@@ -2,7 +2,7 @@
 let allRows = [];
 let sortCol = -1;
 let sortDir = 1;
-let sortLabel = "by most recently read";
+let sortLabel = "by most recent";
 
 let fnf_state    = "both";
 let year_state   = "all_years";
@@ -72,7 +72,7 @@ document.querySelectorAll("thead th[data-col]").forEach(th => {
       // Reset to original CSV order
       sortCol = -1;
       sortDir = 1;
-      sortLabel = "by most recently read";
+      sortLabel = "by most recent";
       allRows.forEach(row => tbody.appendChild(row));
     } else {
       sortDir = sortCycle === 1 ? 1 : -1;

@@ -433,13 +433,14 @@
         const ratingSelect = document.getElementById('rating_filter');
 
         function updateClearButton() {
-            const hasFilters = searchBox.value.trim() !== '' ||
-                               fnfSelect.value !== 'both' ||
-                               yearSelect.value !== 'all_years' ||
-                               ratingSelect.value !== 'all_ratings';
-            clearBtn.style.display = hasFilters ? 'inline-flex' : 'none';
-            // Recalculate offsets since filter bar height may change
-            requestAnimationFrame(setStickyOffsets);
+            setTimeout(() => {
+                const hasFilters = searchBox.value.trim() !== '' ||
+                                   fnfSelect.value !== 'both' ||
+                                   yearSelect.value !== 'all_years' ||
+                                   ratingSelect.value !== 'all_ratings';
+                clearBtn.style.display = hasFilters ? 'inline-flex' : 'none';
+                requestAnimationFrame(setStickyOffsets);
+            }, 0);
         }
 
         clearBtn.addEventListener('click', function () {
