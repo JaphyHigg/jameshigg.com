@@ -81,33 +81,22 @@
 
         /* ── CLEAR FILTERS BUTTON ── */
         .clear-filters {
-            display: inline-flex;
+            display: none;
             align-items: center;
             gap: 4px;
             font-family: 'Epilogue', sans-serif;
             font-size: 11px;
             color: var(--rust);
             background: none;
-            border: 1px solid transparent;
+            border: 1px solid rgba(196,92,42,0.3);
             padding: 5px 10px;
             cursor: pointer;
             letter-spacing: 0.5px;
-            transition: opacity 0.2s ease, border-color 0.2s ease;
-            visibility: hidden;
-            opacity: 0;
-            pointer-events: none;
         }
 
         .clear-filters:hover {
             background: rgba(196,92,42,0.06);
             border-color: var(--rust);
-        }
-
-        .clear-filters.visible {
-            visibility: visible;
-            opacity: 1;
-            pointer-events: auto;
-            border-color: rgba(196,92,42,0.3);
         }
 
         .filter-label {
@@ -448,28 +437,32 @@
                                fnfSelect.value !== 'both' ||
                                yearSelect.value !== 'all_years' ||
                                ratingSelect.value !== 'all_ratings';
-            clearBtn.classList.toggle('visible', hasFilters);
-            // Force reflow to ensure mobile Safari renders the change
-            clearBtn.offsetHeight;
+            clearBtn.style.display = hasFilters ? 'inline-flex' : 'none';
             // Recalculate offsets since filter bar height may change
-            requestAnimationFrame(() => {
-                setStickyOffsets();
-            });
+            requestAnimationFrame(setStickyOffsets);
         }
 
         clearBtn.addEventListener('click', function () {
+            // Reset all controls
             searchBox.value = '';
             fnfSelect.value = 'both';
             yearSelect.value = 'all_years';
             ratingSelect.value = 'all_ratings';
 
-            // Trigger the existing filter/search logic
-            searchBox.dispatchEvent(new Event('input'));
-            fnfSelect.dispatchEvent(new Event('change'));
-            yearSelect.dispatchEvent(new Event('change'));
-            ratingSelect.dispatchEvent(new Event('change'));
+            // Hide button immediately before dispatching events
+            clearBtn.style.display = 'none';
 
-            updateClearButton();
+            // Reset JS state directly to avoid race conditions
+            if (typeof fnf_state !== 'undefined') fnf_state = 'both';
+            if (typeof year_state !== 'undefined') year_state = 'all_years';
+            if (typeof rating_state !== 'undefined') rating_state = 'all_ratings';
+            if (typeof search_state !== 'undefined') search_state = '';
+
+            // Trigger the existing filter/search logic
+            if (typeof apply_filters === 'function') apply_filters();
+            searchBox.dispatchEvent(new Event('input'));
+
+            requestAnimationFrame(setStickyOffsets);
         });
 
         // Listen for changes on all filter controls
