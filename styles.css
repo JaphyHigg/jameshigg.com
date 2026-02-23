@@ -48,7 +48,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    border-bottom: 1px solid rgba(28,24,16,0.1);
+    border-bottom: none;
     opacity: 0;
     animation: rise 0.7s ease 0.1s forwards;
     position: sticky;
