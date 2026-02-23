@@ -68,7 +68,7 @@
             flex-wrap: wrap;
             align-items: center;
             gap: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 0;
             margin-left: -48px;
             margin-right: -48px;
             padding: 16px 48px;
@@ -78,6 +78,29 @@
             top: var(--nav-height, 77px);
             z-index: 100;
         }
+
+        /* ── CLEAR FILTERS BUTTON ── */
+        .clear-filters {
+            display: none;
+            align-items: center;
+            gap: 4px;
+            font-family: 'Epilogue', sans-serif;
+            font-size: 11px;
+            color: var(--rust);
+            background: none;
+            border: 1px solid rgba(196,92,42,0.3);
+            padding: 5px 10px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+        }
+
+        .clear-filters:hover {
+            background: rgba(196,92,42,0.06);
+            border-color: var(--rust);
+        }
+
+        .clear-filters.visible { display: inline-flex; }
 
         .filter-label {
             font-size: 10px;
@@ -124,14 +147,20 @@
         .row-count {
             font-size: 11px;
             color: var(--light);
-            margin-bottom: 16px;
             letter-spacing: 0.5px;
             min-height: 16px;
+            padding: 10px 48px;
+            margin-left: -48px;
+            margin-right: -48px;
+            background: var(--bg);
+            border-bottom: 1px solid rgba(28,24,16,0.06);
+            position: sticky;
+            top: var(--filters-bottom, 130px);
+            z-index: 99;
         }
 
         /* ── TABLE ── */
         .table-wrap {
-            overflow-x: auto;
             border-top: 1px solid rgba(28,24,16,0.08);
             border-bottom: 1px solid rgba(28,24,16,0.08);
         }
@@ -142,7 +171,16 @@
             font-size: 13px;
         }
 
-        thead tr { background: var(--ink); color: #f0ebe2; }
+        thead tr {
+            background: var(--ink);
+            color: #f0ebe2;
+        }
+
+        thead {
+            position: sticky;
+            top: var(--thead-top, 170px);
+            z-index: 98;
+        }
 
         thead th {
             padding: 12px 16px;
@@ -213,6 +251,12 @@
             .filters input { width: 100%; flex: 1 1 auto; }
             .filters select { flex: 1 1 auto; min-width: 0; font-size: 11px; }
 
+            .row-count {
+                margin-left: -24px;
+                margin-right: -24px;
+                padding: 8px 24px;
+            }
+
             /* hide Published, Fiction/NF, and Yr Read */
             thead th:nth-child(3),
             thead th:nth-child(4),
@@ -270,14 +314,14 @@
         <div class="library-content">
 
             <p class="lib-description">
-                Ratings given on day of completion. Switched to decimal ratings in 2022.
+                A reading log I started keeping in 2020. Ratings given on day of completion. Switched to decimal ratings in 2022.
             </p>
 
             <!-- ── STATS ── -->
             <div id="stats-row">
                 <div class="stat-card">
                     <div class="stat-value" id="stat-total">—</div>
-                    <div class="stat-label">books read</div>
+                    <div class="stat-label" id="stat-total-label">books since 2020</div>
                 </div>
                 <div class="stat-card" id="stat-split-wrap">
                     <div class="stat-value" id="stat-split">—</div>
@@ -324,6 +368,8 @@
                     <option value="3.5">3.5+</option>
                     <option value="3">3+</option>
                 </select>
+
+                <button class="clear-filters" id="clear_filters">✕ clear</button>
             </div>
 
             <div class="row-count" id="visible_count"></div>
@@ -351,15 +397,69 @@
     </div>
     <script src="library.js"></script>
     <script>
-        // Measure nav height and set CSS variable for filter bar sticky offset
-        function setNavHeight() {
+        // Measure sticky element heights and set CSS variables for stacking
+        function setStickyOffsets() {
             const nav = document.querySelector('nav');
+            const filters = document.querySelector('.filters');
+            const rowCount = document.querySelector('.row-count');
+            const root = document.documentElement;
+
             if (nav) {
-                document.documentElement.style.setProperty('--nav-height', nav.offsetHeight + 'px');
+                const navH = nav.offsetHeight;
+                root.style.setProperty('--nav-height', navH + 'px');
+
+                if (filters) {
+                    const filtersH = filters.offsetHeight;
+                    root.style.setProperty('--filters-bottom', (navH + filtersH) + 'px');
+
+                    if (rowCount) {
+                        const rowCountH = rowCount.offsetHeight;
+                        root.style.setProperty('--thead-top', (navH + filtersH + rowCountH) + 'px');
+                    }
+                }
             }
         }
-        setNavHeight();
-        window.addEventListener('resize', setNavHeight);
+        // Run after a short delay to ensure fonts/content are rendered
+        setTimeout(setStickyOffsets, 100);
+        window.addEventListener('resize', setStickyOffsets);
+
+        // Clear filters button
+        const clearBtn = document.getElementById('clear_filters');
+        const searchBox = document.getElementById('search_box');
+        const fnfSelect = document.getElementById('fnf');
+        const yearSelect = document.getElementById('read_filter');
+        const ratingSelect = document.getElementById('rating_filter');
+
+        function updateClearButton() {
+            const hasFilters = searchBox.value.trim() !== '' ||
+                               fnfSelect.value !== 'both' ||
+                               yearSelect.value !== 'all_years' ||
+                               ratingSelect.value !== 'all_ratings';
+            clearBtn.classList.toggle('visible', hasFilters);
+            // Recalculate offsets when filter bar changes size
+            setTimeout(setStickyOffsets, 50);
+        }
+
+        clearBtn.addEventListener('click', function () {
+            searchBox.value = '';
+            fnfSelect.value = 'both';
+            yearSelect.value = 'all_years';
+            ratingSelect.value = 'all_ratings';
+
+            // Trigger the existing filter/search logic
+            searchBox.dispatchEvent(new Event('input'));
+            fnfSelect.dispatchEvent(new Event('change'));
+            yearSelect.dispatchEvent(new Event('change'));
+            ratingSelect.dispatchEvent(new Event('change'));
+
+            updateClearButton();
+        });
+
+        // Listen for changes on all filter controls
+        searchBox.addEventListener('input', updateClearButton);
+        fnfSelect.addEventListener('change', updateClearButton);
+        yearSelect.addEventListener('change', updateClearButton);
+        ratingSelect.addEventListener('change', updateClearButton);
     </script>
 </body>
 </html>

@@ -170,6 +170,12 @@ function update_stats() {
 
   // Total books
   document.getElementById("stat-total").textContent = visible.length;
+  const totalLabel = document.getElementById("stat-total-label");
+  if (year_state === "all_years") {
+    totalLabel.textContent = "books since 2020";
+  } else {
+    totalLabel.textContent = "books in " + year_state;
+  }
 
   // Average rating
   const ratings = visible
@@ -213,10 +219,7 @@ function update_stats() {
     document.getElementById("stat-bpy").textContent = bpy;
     document.getElementById("stat-bpy-label").textContent = "books / year";
   } else {
-    // Show books in that specific year instead
-    bpyStat.style.display = "";
-    document.getElementById("stat-bpy").textContent = visible.length;
-    document.getElementById("stat-bpy-label").textContent = "books in " + year_state;
+    bpyStat.style.display = "none";
   }
 }
 
