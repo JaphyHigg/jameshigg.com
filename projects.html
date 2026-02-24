@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>projects — james higgins</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Epilogue:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        /* ── PROJECT GRID ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            padding-bottom: 80px;
+            opacity: 0;
+            animation: rise 0.7s ease 0.35s forwards;
+        }
+
+        /* ── PROJECT CARD ── */
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: var(--ink);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        a.project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(28,24,16,0.08);
+        }
+
+        /* placeholder thumbnail */
+        .project-thumb {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background: linear-gradient(135deg, rgba(28,24,16,0.04) 0%, rgba(28,24,16,0.08) 100%);
+            border: 1px solid rgba(28,24,16,0.06);
+            border-radius: 6px 6px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .project-thumb-icon {
+            font-size: 28px;
+            color: var(--light);
+            opacity: 0.5;
+        }
+
+        .project-info {
+            padding: 20px 4px 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .project-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .project-name {
+            font-family: 'Lora', serif;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            line-height: 1.3;
+        }
+
+        .project-arrow {
+            font-size: 16px;
+            color: var(--light);
+            transition: transform 0.2s ease, color 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        a.project-card:hover .project-arrow {
+            transform: translate(3px, -3px);
+            color: var(--rust);
+        }
+
+        a.project-card:hover .project-name {
+            color: var(--rust);
+        }
+
+        .project-desc {
+            font-size: 13px;
+            font-weight: 300;
+            color: var(--mid);
+            line-height: 1.5;
+        }
+
+        .project-tag {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--light);
+            margin-top: 4px;
+        }
+
+        /* ── NON-LINKED CARDS ── */
+        .project-card.coming-soon {
+            cursor: default;
+        }
+
+        .project-card.coming-soon .project-arrow {
+            display: none;
+        }
+
+        .project-card.coming-soon .project-thumb::after {
+            content: 'coming soon';
+            position: absolute;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--light);
+            opacity: 0.6;
+        }
+
+        .project-thumb {
+            position: relative;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-name {
+                font-size: 16px;
+            }
+            .project-info {
+                padding: 16px 2px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <nav>
+            <a href="index.html" class="nav-home">james higgins</a>
+            <ul class="nav-links">
+                <li><a href="projects.html" class="active">projects</a></li>
+                <li><a href="library.html">library</a></li>
+                <li><a href="https://www.discogs.com/user/JaphyHigg/collection?header=1">records</a></li>
+                <li><a href="contact.html">contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="page-header">
+            <h1>things I've <em>made.</em></h1>
+        </div>
+
+        <div class="projects-grid">
+
+            <!-- ── CHEESE GUESSING GAME ── -->
+            <a href="cheese.html" class="project-card">
+                <div class="project-thumb">
+                    <span class="project-thumb-icon">🧀</span>
+                </div>
+                <div class="project-info">
+                    <div class="project-title-row">
+                        <span class="project-name">Cheese Guessing Game</span>
+                        <span class="project-arrow">↗</span>
+                    </div>
+                    <span class="project-desc">Look at a photo of a cheese and guess what it is from multiple choice answers.</span>
+                    <span class="project-tag">game · web</span>
+                </div>
+            </a>
+
+            <!-- ── COZY SMALL WORLDS ── -->
+            <div class="project-card coming-soon">
+                <div class="project-thumb">
+                    <span class="project-thumb-icon">🎬</span>
+                </div>
+                <div class="project-info">
+                    <div class="project-title-row">
+                        <span class="project-name">CozySmallWorlds</span>
+                        <span class="project-arrow">↗</span>
+                    </div>
+                    <span class="project-desc">YouTube channel of short films made using AI.</span>
+                    <span class="project-tag">film · ai</span>
+                </div>
+            </div>
+
+            <!-- ── BITCOIN ATH TRACKER ── -->
+            <a href="https://github.com/JaphyHigg/btcathtrack" target="_blank" class="project-card">
+                <div class="project-thumb">
+                    <span class="project-thumb-icon">₿</span>
+                </div>
+                <div class="project-info">
+                    <div class="project-title-row">
+                        <span class="project-name">Bitcoin All-Time-High Tracker</span>
+                        <span class="project-arrow">↗</span>
+                    </div>
+                    <span class="project-desc">View the price of Bitcoin and proximity to ATH in many currencies at once.</span>
+                    <span class="project-tag">code · finance</span>
+                </div>
+            </a>
+
+            <!-- ── 3D PRINTS ── -->
+            <div class="project-card coming-soon">
+                <div class="project-thumb">
+                    <span class="project-thumb-icon">🖨</span>
+                </div>
+                <div class="project-info">
+                    <div class="project-title-row">
+                        <span class="project-name">3D Prints</span>
+                        <span class="project-arrow">↗</span>
+                    </div>
+                    <span class="project-desc">Kitbashed models printed on a resin printer and hand-painted.</span>
+                    <span class="project-tag">art · fabrication</span>
+                </div>
+            </div>
+
+            <!-- ── WSB INSIGHT DASHBOARD ── -->
+            <a href="https://github.com/JaphyHigg/wsb-insights-dashboard" target="_blank" class="project-card">
+                <div class="project-thumb">
+                    <span class="project-thumb-icon">📊</span>
+                </div>
+                <div class="project-info">
+                    <div class="project-title-row">
+                        <span class="project-name">Wall Street Bets Insight Dashboard</span>
+                        <span class="project-arrow">↗</span>
+                    </div>
+                    <span class="project-desc">View info about the top stocks currently discussed on the WSB subreddit.</span>
+                    <span class="project-tag">code · finance</span>
+                </div>
+            </a>
+
+            <!-- ── BLENDER ── -->
+            <div class="project-card coming-soon">
+                <div class="project-thumb">
+                    <span class="project-thumb-icon">🎨</span>
+                </div>
+                <div class="project-info">
+                    <div class="project-title-row">
+                        <span class="project-name">Blender Creations</span>
+                        <span class="project-arrow">↗</span>
+                    </div>
+                    <span class="project-desc">Digital art and animations made in Blender.</span>
+                    <span class="project-tag">art · 3d</span>
+                </div>
+            </div>
+
+            <!-- ── CS50 QUIZZER ── -->
+            <a href="https://github.com/JaphyHigg/cs50x-course-quizzer" target="_blank" class="project-card">
+                <div class="project-thumb">
+                    <span class="project-thumb-icon">📚</span>
+                </div>
+                <div class="project-info">
+                    <div class="project-title-row">
+                        <span class="project-name">Harvard CS50x Self Quizzer</span>
+                        <span class="project-arrow">↗</span>
+                    </div>
+                    <span class="project-desc">A flashcard-style study guide for Harvard's CS50x, built in Python.</span>
+                    <span class="project-tag">code · education</span>
+                </div>
+            </a>
+
+            <!-- ── JAMES HIGG YOUTUBE ── -->
+            <div class="project-card coming-soon">
+                <div class="project-thumb">
+                    <span class="project-thumb-icon">✈</span>
+                </div>
+                <div class="project-info">
+                    <div class="project-title-row">
+                        <span class="project-name">JamesHigg on YouTube</span>
+                        <span class="project-arrow">↗</span>
+                    </div>
+                    <span class="project-desc">Personal travel videos.</span>
+                    <span class="project-tag">film · travel</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
